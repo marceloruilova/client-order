@@ -2,6 +2,8 @@ package com.marcelo.crud.model;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 public class Client {
 
@@ -21,12 +23,11 @@ public class Client {
 	@Column
 	private String phone;
 
+	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<OrderClient> orders;
+
 	public Long getId() {
 		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getName() {
@@ -59,5 +60,13 @@ public class Client {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public Set<OrderClient> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Set<OrderClient> orders) {
+		this.orders = orders;
 	}
 }

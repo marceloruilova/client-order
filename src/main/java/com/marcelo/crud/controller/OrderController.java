@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/v1/client")
+@RequestMapping(value = "/api/v1/order")
 @CrossOrigin("*")
-public class ClientController {
+public class OrderController {
 
 	@Autowired
 	private ClientService clientServiceAPI;

@@ -2,31 +2,34 @@ package com.marcelo.crud.model;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+import java.util.Set;
+
 @Entity
 public class Article {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
+	@Column(unique = true)
+	private String code;
+
 	@Column
 	private String name;
 	
 	@Column
-	private String surname;
-	
-	@Column
-	private String address;
-	
-	@Column
-	private String phone;
+	private double unitPrice;
 
-	public Long getId() {
-		return id;
+	@OneToMany(mappedBy = "article", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<OrderClient> orders;
+
+	public String getCode() {
+		return code;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getName() {
@@ -37,27 +40,19 @@ public class Article {
 		this.name = name;
 	}
 
-	public String getSurname() {
-		return surname;
+	public double getUnitPrice() {
+		return unitPrice;
 	}
 
-	public void setSurname(String surname) {
-		this.surname = surname;
+	public void setUnitPrice(double unitPrice) {
+		this.unitPrice = unitPrice;
 	}
 
-	public String getAddress() {
-		return address;
+	public Set<OrderClient> getOrders() {
+		return orders;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setOrders(Set<OrderClient> orders) {
+		this.orders = orders;
 	}
 }
