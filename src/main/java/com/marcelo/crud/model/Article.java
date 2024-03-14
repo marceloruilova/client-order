@@ -21,6 +21,9 @@ public class Article {
 	@Column
 	private double unitPrice;
 
+	@Column
+	private int quantity;
+
 	@OneToMany(mappedBy = "article", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<OrderClient> orders;
 
@@ -54,5 +57,13 @@ public class Article {
 
 	public void setOrders(Set<OrderClient> orders) {
 		this.orders = orders;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 }
